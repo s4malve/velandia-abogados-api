@@ -1,3 +1,5 @@
+import nodeFetch from 'node-fetch'
+
 import { SENDINBLUE_API_KEY } from '../config'
 
 const SENDINBLUE_BASE_URL = 'https://api.sendinblue.com/v3'
@@ -7,7 +9,7 @@ type ContactForm = { name: string; email: string; message: string }
 
 export const sendMessage = async ({ email, message, name }: ContactForm) => {
   try {
-    const options = {
+    const options: any = {
       method: 'POST',
       body: JSON.stringify({
         subject: `[Velandia Abogados]: Mensaje de ${name}`,
@@ -20,9 +22,9 @@ export const sendMessage = async ({ email, message, name }: ContactForm) => {
         'Content-Type': 'application/json',
         'api-key': SENDINBLUE_API_KEY
       }
-    } as RequestInit
+    }
 
-    const res = await fetch(SENDINBLUE_SMTP_URL, options)
+    const res = await nodeFetch(SENDINBLUE_SMTP_URL, options)
     const data = await res.json()
 
     if (res.ok) return data
