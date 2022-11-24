@@ -29,6 +29,10 @@ export const sendMessage = async ({ email, message, name }: ContactForm) => {
 
     return await Promise.reject(data)
   } catch (error) {
+    console.log(
+      '🚀 ~ file: sendinblue.ts ~ line 32 ~ sendMessage ~ error',
+      error
+    )
     return await Promise.reject(error)
   }
 }
